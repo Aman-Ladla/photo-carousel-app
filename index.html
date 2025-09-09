@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Photo Carousel App</title>
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#764ba2">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Photo Carousel">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+      }
+      
+      .carousel-container {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+      
+      .carousel {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.5s ease-in-out;
+        align-items: center;
+        justify-content: flex-start;
+      }
+      
+      .slide {
+        min-width: 100%;
+        height: 100%;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 30px;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+      
+      .slide-content {
+        text-align: center;
+        color: white;
+        max-width: 60%;
+        z-index: 2;
+        position: relative;
+        flex-shrink: 0;
+        margin-bottom: 10px;
+      }
+      
+      .image-container {
+        width: 50vw;
+        height: 45vh;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        background-size: cover;
+        background-position: center;
+        transition: transform 0.3s ease;
+        flex-shrink: 0;
+        max-width: 90vw;
+        max-height: 60vh;
+      }
+      
+      .image-container:hover {
+        transform: scale(1.02);
+      }
+      
+      .slide-title {
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+        color: #ffffff;
+      }
+      
+      .slide-description {
+        font-size: 1.3rem;
+        line-height: 1.6;
+        opacity: 0.9;
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+        color: #f0f0f0;
+        font-weight: 300;
+      }
+      
+      .carousel-controls {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 10px;
+        z-index: 10;
+      }
+      
+      .control-btn {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        border: 2px solid white;
+        background: transparent;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      
+      .control-btn.active {
+        background: white;
+      }
+      
+      .nav-arrows {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255, 255, 255, 0.2);
+        border: none;
+        color: white;
+        font-size: 2rem;
+        padding: 15px 20px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+        z-index: 10;
+      }
+      
+      .nav-arrows:hover {
+        background: rgba(255, 255, 255, 0.4);
+      }
+      
+      .prev {
+        left: 20px;
+      }
+      
+      .next {
+        right: 20px;
+      }
+      
+      @media (max-width: 768px) {
+        .slide {
+          gap: 15px;
+          padding: 15px;
+        }
+        
+        .slide-content {
+          max-width: 85%;
+        }
+        
+        .image-container {
+          width: 75vw;
+          height: 50vh;
+          max-width: 85vw;
+          max-height: 55vh;
+        }
+        
+        .slide-title {
+          font-size: 1.8rem;
+        }
+        
+        .slide-description {
+          font-size: 1rem;
+        }
+        
+        .nav-arrows {
+          font-size: 1.5rem;
+          padding: 10px 15px;
+        }
+        
+        .prev {
+          left: 10px;
+        }
+        
+        .next {
+          right: 10px;
+        }
+      }
+      
+      @media (max-width: 480px) {
+        .slide {
+          gap: 10px;
+          padding: 10px;
+        }
+        
+        .slide-content {
+          max-width: 95%;
+        }
+        
+        .image-container {
+          width: 85vw;
+          height: 45vh;
+          max-width: 90vw;
+          max-height: 50vh;
+        }
+        
+        .slide-title {
+          font-size: 1.4rem;
+        }
+        
+        .slide-description {
+          font-size: 0.9rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="carousel-container">
+      <div class="carousel" id="carousel">
+        <!-- Slides will be dynamically generated -->
+      </div>
+      
+      <button class="nav-arrows prev" id="prevBtn">‹</button>
+      <button class="nav-arrows next" id="nextBtn">›</button>
+      
+      <div class="carousel-controls" id="controls">
+        <!-- Control dots will be dynamically generated -->
+      </div>
+    </div>
+
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>

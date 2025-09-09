@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Carousel APK Builder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .step {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            border-left: 4px solid #fff;
+        }
+        .step h3 {
+            color: #fff;
+            margin-top: 0;
+        }
+        .code {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+        .download-btn {
+            display: inline-block;
+            background: #4CAF50;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            margin: 10px;
+            transition: background 0.3s;
+        }
+        .download-btn:hover {
+            background: #45a049;
+        }
+        .warning {
+            background: rgba(255, 193, 7, 0.2);
+            border: 1px solid #ffc107;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📱 Photo Carousel APK Builder</h1>
+        
+        <div class="step">
+            <h3>🎯 Method 1: PWA Installation (Easiest)</h3>
+            <p>Your app is already a Progressive Web App (PWA) and can be installed directly on Android:</p>
+            <ol>
+                <li>Open Chrome on your Android phone</li>
+                <li>Go to: <strong>http://192.168.0.104:3000</strong> (or your computer's IP)</li>
+                <li>Tap the "Add to Home Screen" option in Chrome menu</li>
+                <li>Your app will be installed as a native-like app!</li>
+            </ol>
+        </div>
+
+        <div class="step">
+            <h3>🔧 Method 2: Online APK Builder</h3>
+            <p>Use these online tools to convert your web app to APK:</p>
+            <a href="https://www.pwabuilder.com/" class="download-btn" target="_blank">PWA Builder</a>
+            <a href="https://www.phonegap.com/build/" class="download-btn" target="_blank">PhoneGap Build</a>
+            <a href="https://capacitorjs.com/" class="download-btn" target="_blank">Capacitor Cloud</a>
+        </div>
+
+        <div class="step">
+            <h3>📦 Method 3: Manual APK Creation</h3>
+            <p>Download your app files and use these tools:</p>
+            <div class="code">
+                # Download your app files
+                # 1. Copy the 'www' folder from your project
+                # 2. Use Android Studio (if available)
+                # 3. Or use online APK builders
+            </div>
+        </div>
+
+        <div class="step">
+            <h3>🚀 Method 4: Capacitor Live Reload</h3>
+            <p>If you have Android SDK installed:</p>
+            <div class="code">
+                npx cap run android
+            </div>
+            <p>This will install the app directly on your connected Android device.</p>
+        </div>
+
+        <div class="warning">
+            <h3>⚠️ Important Notes:</h3>
+            <ul>
+                <li>For PWA installation, make sure your phone and computer are on the same network</li>
+                <li>Some browsers may not support PWA installation</li>
+                <li>For production APK, consider using Android Studio for better control</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <h3>📁 Your App Files</h3>
+            <p>Your app is ready in the 'www' folder with all necessary files:</p>
+            <ul>
+                <li>✅ index.html - Main app file</li>
+                <li>✅ manifest.json - PWA manifest</li>
+                <li>✅ assets/ - JavaScript and CSS files</li>
+                <li>✅ Responsive design for mobile</li>
+                <li>✅ Touch/swipe support</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
